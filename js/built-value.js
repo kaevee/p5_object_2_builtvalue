@@ -8,20 +8,17 @@ export class Dto {
     const attrs = this.keys.reduce((acc, it) => (acc += it.toString()), "");
     return `
 /// ${this.dtoName}
-abstract class ${this.dtoName} implements Built<${this.dtoName}, ${
-      this.dtoName
-    }Builder> {
+abstract class ${this.dtoName} implements Built<${this.dtoName}, ${this.dtoName
+      }Builder> {
   ${this.dtoName}._();
 
-  factory ${this.dtoName}([Function(${this.dtoName}Builder b) updates]) = _$${
-      this.dtoName
-    };
+  factory ${this.dtoName}([Function(${this.dtoName}Builder b) updates]) = _$${this.dtoName
+      };
   ${attrs}
 
   String toJson() {
-    return jsonEncode(serializers.serializeWith(${
-      this.dtoName
-    }.serializer, this));
+    return jsonEncode(serializers.serializeWith(${this.dtoName
+      }.serializer, this));
   }
 
   static ${this.dtoName} fromJson(String jsonString) {
@@ -36,8 +33,8 @@ abstract class ${this.dtoName} implements Built<${this.dtoName}, ${
   }
 
   static Serializer<${this.dtoName}> get serializer => _$${_.lowerFirst(
-      this.dtoName
-    )}Serializer;
+        this.dtoName
+      )}Serializer;
 }\r\n`;
   }
 }
@@ -68,11 +65,11 @@ export class DtoAttr {
 
   toString() {
     return !this.isList
-      ? `\r\n  @nullable
+      ? `
   @BuiltValueField(wireName: '${this.k}')
   ${this.dartType} get ${this.dk};
 `
-      : `\r\n  @nullable
+      : `
   @BuiltValueField(wireName: '${this.k}')
   ${this.flaBuiltList()} get ${this.dk};
 `;
