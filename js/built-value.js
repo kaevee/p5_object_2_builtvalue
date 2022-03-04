@@ -65,11 +65,11 @@ export class DtoAttr {
 
   toString() {
     return !this.isList
-      ? `
+      ? `\r\n  @nullable
   @BuiltValueField(wireName: '${this.k}')
   ${this.dartType} get ${this.dk};
 `
-      : `
+      : `\r\n  @nullable
   @BuiltValueField(wireName: '${this.k}')
   ${this.flaBuiltList()} get ${this.dk};
 `;
